@@ -1,0 +1,107 @@
+:root {
+  --ink: #0b0b0b;
+  --ink-2: #52514e;
+  --muted: #898781;
+  --surface: #fcfcfb;
+  --accent: #eb6834;
+}
+
+body {
+  font: 100%/1.5 system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--surface);
+  max-width: 1000px;
+  margin: 2em auto;
+  padding: 0 1em;
+}
+
+h1 {
+  margin-bottom: 0.2em;
+}
+
+.subtitle {
+  color: var(--ink-2);
+  margin-top: 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  align-items: center;
+  margin-block: 1em;
+}
+
+.toggle button {
+  font: inherit;
+  padding: 0.4em 0.9em;
+  border: 1px solid #c3c2b7;
+  background: white;
+  cursor: pointer;
+}
+
+.toggle button:first-child {
+  border-radius: 0.4em 0 0 0.4em;
+}
+
+.toggle button:last-child {
+  border-radius: 0 0.4em 0.4em 0;
+  border-left: none;
+}
+
+.toggle button.active {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  flex: 1;
+}
+
+.slider input {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+#map svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cell {
+  stroke: none;
+  shape-rendering: crispEdges;
+}
+
+.cell:hover {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.land {
+  fill: none;
+  stroke: #333;
+  stroke-width: 0.6;
+  pointer-events: none;
+}
+
+#legend svg {
+  display: block;
+  margin-top: 0.5em;
+}
+
+#tooltip {
+  position: fixed;
+  pointer-events: none;
+  background: white;
+  border: 1px solid #c3c2b7;
+  border-radius: 0.4em;
+  padding: 0.4em 0.7em;
+  font-size: 0.9em;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+}
