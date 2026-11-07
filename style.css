@@ -3,7 +3,8 @@
   --ink-2: #52514e;
   --muted: #898781;
   --surface: #fcfcfb;
-  --accent: #eb6834;
+  --low: #2a78d6;
+  --high: #eb6834;
 }
 
 body {
@@ -19,6 +20,11 @@ h1 {
   margin-bottom: 0.2em;
 }
 
+h2 {
+  margin-top: 1.5em;
+  margin-bottom: 0.3em;
+}
+
 .subtitle {
   color: var(--ink-2);
   margin-top: 0;
@@ -32,7 +38,8 @@ h1 {
   margin-block: 1em;
 }
 
-.toggle button {
+.toggle button,
+.preset {
   font: inherit;
   padding: 0.4em 0.9em;
   border: 1px solid #c3c2b7;
@@ -49,10 +56,27 @@ h1 {
   border-left: none;
 }
 
-.toggle button.active {
+.toggle button.active,
+.preset.active {
   background: var(--ink);
   color: white;
   border-color: var(--ink);
+}
+
+.dot {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  border-radius: 50%;
+  margin-right: 0.4em;
+}
+
+.dot.low {
+  background: var(--low);
+}
+
+.dot.high {
+  background: var(--high);
 }
 
 .slider {
@@ -64,23 +88,39 @@ h1 {
 
 .slider input {
   flex: 1;
-  accent-color: var(--accent);
+  accent-color: var(--high);
 }
 
-#map svg {
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: 0.8em;
+  color: var(--ink-2);
+}
+
+#preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.preset {
+  border-radius: 999px;
+  padding: 0.25em 0.8em;
+  font-size: 0.9em;
+}
+
+#map svg,
+#line svg {
   width: 100%;
   height: auto;
   display: block;
 }
 
 .cell {
-  stroke: none;
   shape-rendering: crispEdges;
-}
-
-.cell:hover {
-  stroke: var(--ink);
-  stroke-width: 1.5;
 }
 
 .land {
@@ -90,9 +130,141 @@ h1 {
   pointer-events: none;
 }
 
-#legend svg {
-  display: block;
-  margin-top: 0.5em;
+.hover-box {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.brush .selection {
+  fill: white;
+  fill-opacity: 0.12;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-dasharray: 6 3;
+}
+
+#legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em 0.9em;
+  align-items: center;
+  margin-top: 0.6em;
+  font-size: 0.85em;
+  color: var(--ink-2);
+}
+
+#legend .item {
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+}
+
+#legend .swatch {
+  width: 1.1em;
+  height: 0.8em;
+  border-radius: 2px;
+}
+
+#legend .unit {
+  color: var(--muted);
+}
+
+#readout {
+  font-size: 1.15em;
+  margin-top: 1.2em;
+  padding: 0.8em 1em;
+  border-left: 4px solid var(--high);
+  background: white;
+}
+
+#line-legend {
+  display: flex;
+  gap: 1.5em;
+  font-size: 0.9em;
+  color: var(--ink-2);
+}
+
+#line-legend span {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.key {
+  stroke: var(--ink-2);
+  stroke-width: 2.5;
+}
+
+.key.dashed {
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.series {
+  fill: none;
+  stroke-width: 2.5;
+  transition: opacity 300ms;
+}
+
+.series.global {
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.faded {
+  opacity: 0.2;
+}
+
+.end-label {
+  font-size: 13px;
+  fill: var(--ink);
+  transition: opacity 300ms;
+}
+
+.end-label.global {
+  fill: var(--ink-2);
+}
+
+.gridlines .tick line {
+  stroke: #e1e0d9;
+}
+
+.gridlines .domain {
+  display: none;
+}
+
+.axis text,
+.axis-title {
+  fill: var(--muted);
+  font-size: 12px;
+}
+
+.ref line {
+  stroke: #b8b6ac;
+  stroke-dasharray: 2 3;
+}
+
+.ref text {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.chart-note {
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 0.3em;
+}
+
+.marker {
+  stroke: var(--muted);
+  stroke-dasharray: 3 3;
+}
+
+.marker-label {
+  fill: var(--ink-2);
+  font-size: 12px;
 }
 
 #tooltip {
@@ -104,4 +276,9 @@ h1 {
   padding: 0.4em 0.7em;
   font-size: 0.9em;
   box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
+}
+
+.writeup {
+  margin-top: 3em;
+  border-top: 1px solid #e1e0d9;
 }
