@@ -9,12 +9,16 @@
 </head>
 <body>
   <h1>Where Will Warm the Fastest?</h1>
-  <p class="subtitle">Surface air temperature change compared to 1850-1900, averaged over each decade on a 5° grid. Data: CMIP6, GFDL-ESM4 model.</p>
+  <p class="subtitle">
+    Each square is a 5° × 5° patch of the planet. Colors show how much warmer its near-surface air is than the
+    1850–1900 average, averaged over each decade. Data: CMIP6 climate model GFDL-ESM4, historical run (1850–2014)
+    joined with two future scenarios (2015–2100).
+  </p>
 
   <div class="controls">
     <div class="toggle" role="group" aria-label="Emissions scenario">
-      <button data-scenario="ssp126">Low emissions (SSP1-2.6)</button>
-      <button data-scenario="ssp585" class="active">High emissions (SSP5-8.5)</button>
+      <button data-scenario="ssp126"><span class="dot low"></span>Low emissions (SSP1-2.6)</button>
+      <button data-scenario="ssp585" class="active"><span class="dot high"></span>High emissions (SSP5-8.5)</button>
     </div>
     <label class="slider">
       Decade: <strong id="decade-label">2090s</strong>
@@ -22,8 +26,38 @@
     </label>
   </div>
 
+  <div class="presets">
+    <span>Drag a box on the map to pick any region, or try:</span>
+    <div id="preset-buttons"></div>
+  </div>
+
   <div id="map"></div>
   <div id="legend"></div>
+
+  <p id="readout"></p>
+
+  <h2 id="line-title"></h2>
+  <div id="line-legend">
+    <span><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" class="key solid"></line></svg>Selected region</span>
+    <span><svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" class="key dashed"></line></svg>World average</span>
+  </div>
+  <div id="line"></div>
+  <p class="chart-note">
+    Region and world averages are area-weighted, because grid squares near the poles cover much less of the
+    Earth's surface than squares near the equator.
+  </p>
+
   <div id="tooltip" hidden></div>
+
+  <section class="writeup">
+    <h2>Why we made this</h2>
+    <p>[Write the motivation here: what question you wanted to answer and why it matters.]</p>
+
+    <h2>Design decisions</h2>
+    <p>[Write the design rationale here: why a map plus a linked line chart, why these colors and bins, why change from 1850–1900 instead of raw temperature, and what alternatives you considered.]</p>
+
+    <h2>Development process</h2>
+    <p>[Write who did what, roughly how many people-hours it took, and which parts took the longest.]</p>
+  </section>
 </body>
 </html>
